@@ -1,11 +1,9 @@
 from flask import Flask, redirect
 from flask_restful import Api
-# from resources.product import ItemList, Item
-from resources.product import Item
+from resources.product import Item, ItemList
 from flask_jwt import JWT
 from security import authentication, identity
 from resources.user import RegisterUser
-
 
 app = Flask(__name__)
 app.secret_key = "my_secret_key"
@@ -21,7 +19,7 @@ def home():
     return redirect("https://github.com/Maria-555/unilab_rest_api/tree/main"), 302
 
 
-# api.add_resource(ItemList, "/items")
+api.add_resource(ItemList, "/items")
 api.add_resource(Item, "/items/<string:name>")
 api.add_resource(RegisterUser, "/registration")
 

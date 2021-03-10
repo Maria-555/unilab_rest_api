@@ -3,18 +3,13 @@ from flask_jwt import jwt_required
 from models.product import ItemModels
 
 
-# class ItemList(Resource):
-#     # TABLE_NAME = 'places'
-#
-#     def get(self):
-#         return self.query.all()
-#
-#     def delete(self):
-#         pass
+class ItemList(Resource):
+
+    def get(self):
+        return {'Parking places': list(map(lambda item: item.json(), ItemModels.query.all()))}
 
 
 class Item(Resource):
-    # TABLE_NAME = 'places'
 
     my_parser = reqparse.RequestParser()
     my_parser.add_argument('name',
